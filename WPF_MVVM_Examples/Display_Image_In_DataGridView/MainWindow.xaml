@@ -1,0 +1,48 @@
+﻿<Window x:Class="Display_Image_In_DataGridView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Display_Image_In_DataGridView"
+        xmlns:ViewModel="clr-namespace:Display_Image_In_DataGridView.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.DataContext>
+        <ViewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Grid Margin="10">
+        <TextBlock Text="{Binding TackTime}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+
+        <Button Content="Run" VerticalAlignment="Top" Height="40" Width="100" HorizontalAlignment="Right"
+                Command="{Binding ButtonClickCommand}" CommandParameter="DataGrid"/>
+
+        <DataGrid AutoGenerateColumns="False" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="760" Height="350"
+                  ItemsSource="{Binding CollectionFileList}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="No" Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Number}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Name" Width="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="BitmapImg" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Height="100" Width="100" Source="{Binding Path}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
